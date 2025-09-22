@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flores amarillas con corazones</title>
+  <style>
+    :root{
+      --petal:#FFD54A;
+      --center:#8B5E00;
+      --stem:#2E8B57;
+      --leaf:#2EA36E;
+      --bg:#fff8ec;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,var(--bg),#fff);
+      font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      overflow:hidden;
+    }
+
+    .garden{
+      display:flex;
+      gap:1.5rem;
+      align-items:flex-end;
+      padding:2rem;
+    }
+
+    .flower {
+      width:160px;
+      height:240px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      animation: sway 6s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    svg{ display:block; width:100%; height:auto; }
+
+    /* Animaciones de crecimiento */
+    .stem, .leaf {
+      transform-origin: top center;
+      transform: scaleY(0);
+      animation: grow 2s forwards ease-out;
+    }
+    .leaf {
+      transform-origin: center center;
+      animation: growLeaf 2s forwards ease-out;
+      animation-delay: 1s;
+      opacity:0;
+    }
+
+    @keyframes grow {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+    @keyframes growLeaf {
+      from { transform: scale(0); opacity:0; }
+      to { transform: scale(1); opacity:1; }
+    }
+
+    /* pétalos y centro aparecen después */
+    .petals, .center {
+      opacity:0;
+      animation: appear 1.5s forwards ease-in;
+      animation-delay: 2s;
+    }
+    @keyframes appear {
+      to { opacity:1; }
+    }
+
+    /* movimiento de balanceo */
+    @keyframes sway {
+      0% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+      100% { transform: rotate(-3deg); }
+    }
+
+    /* corazones */
+    .heart {
+      position: absolute;
+      bottom: 100px;
+      font-size: 24px;
+      color: red;
+      opacity: 0;
+      animation: floatUp 4s ease-in-out forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.5); opacity:0; }
+      30% { opacity:1; }
+      100% { transform: translateY(-200px) scale(1.2); opacity:0; }
+    }
+
+    /* texto */
+    .love-text {
+      position: fixed;
+      bottom: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: crimson;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 3s;
+    }
+    @keyframes fadeIn {
+      to { opacity:1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="garden">
+    <!-- Flor 1 -->
+    <div class="flower">
+      <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- tallo -->
+        <rect class="stem" x="96" y="120" width="8" height="130" rx="4" fill="var(--stem)"/>
+        <!-- hojas -->
+        <path class="leaf" d="M99 180 C70 170 60 150 84 140 C100 133 110 160 99 180 Z" fill="var(--leaf)"/>
+        <path class="leaf" d="M101 205 C130 195 140 175 116 165 C100 158 90 185 101 205 Z" fill="var(--leaf)"/>
+
+        <!-- pétalos -->
+        <g class="petals" transform="translate(100,85)" fill="var(--petal)">
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-36" rx="22" ry="36" transform="rotate(315)"/>
+        </g>
+
+        <!-- centro -->
+        <circle class="center" cx="100" cy="85" r="26" fill="var(--center)"/>
+      </svg>
+    </div>
+
+    <!-- Flor 2 -->
+    <div class="flower">
+      <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <rect class="stem" x="96" y="120" width="8" height="140" rx="4" fill="var(--stem)"/>
+        <path class="leaf" d="M99 180 C70 170 60 150 84 140 C100 133 110 160 99 180 Z" fill="var(--leaf)"/>
+        <path class="leaf" d="M101 205 C130 195 140 175 116 165 C100 158 90 185 101 205 Z" fill="var(--leaf)"/>
+
+        <g class="petals" transform="translate(100,70)" fill="var(--petal)">
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(40)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(80)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(160)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(200)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-30" rx="20" ry="34" transform="rotate(280)"/>
+        </g>
+
+        <circle class="center" cx="100" cy="70" r="24" fill="var(--center)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- corazones que aparecen -->
+  <div class="heart" style="left:40%; animation-delay:3s;">❤</div>
+  <div class="heart" style="left:50%; animation-delay:3.5s;">❤</div>
+  <div class="heart" style="left:60%; animation-delay:4s;">❤</div>
+  <div class="heart" style="left:45%; animation-delay:4.5s;">❤</div>
+  <div class="heart" style="left:55%; animation-delay:5s;">❤</div>
+
+  <!-- texto -->
+  <div class="love-text">Te amo</div>
+</body>
+</html>
